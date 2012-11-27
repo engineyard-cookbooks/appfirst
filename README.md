@@ -20,12 +20,20 @@ This recipe installs and updates the Appfirst client for a given account ID.
 Attributes
 ==========
 
-This recipe will attempt to download the collector if one does not exist locally.  It will continue on failure in case the appfirst front end is not responding.
+This recipe will attempt to download the collector if one does not exist locally, or if the current local one is out-of-date.  It will continue 
+on failure in case the appfirst front end is not responding.
 
-`"appfirst_account_id" => "1234"`
+Open Appfirst-Cookbook/attributes/default.rb, and edit the variable shown below to reflect your AppFirst account ID.  This can be located in
+the appfirst.com WebUI, by navigating to the Administration tab, then clicking 'Setup'.  Click the 'Add More Collectors' link and retrieve the
+Account ID from the Collector download URL.  This should look something like 'http://wwws.appfirst.com/packages/initial/xxxx/'
 
-The ID should be a string since it is used when fetching a URL
+`default['appfirst']['appfirst_account_id'] = 'xxxx'`
 
+The second noteworthy attribute allows the end user to specify where the
+Collector installation package should be stored locally after it is
+retrieved from appfirst.com -
+
+default['appfirst']['tmp_file_location'] ='/tmp'
 
 Resources/Providers
 ===================
