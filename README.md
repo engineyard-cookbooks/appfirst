@@ -24,8 +24,8 @@ This recipe will attempt to download the collector if one does not exist locally
 on failure in case the appfirst front end is not responding.
 
 Open Appfirst-Cookbook/attributes/default.rb, and edit the variable shown below to reflect your AppFirst account ID.  This can be located in
-the appfirst.com WebUI, by navigating to the Administration tab, then clicking 'Setup'.  Click the 'Add More Collectors' link and retrieve the
-Account ID from the Collector download URL.  This should look something like 'http://wwws.appfirst.com/packages/initial/xxxx/'
+the appfirst.com WebUI, by navigating to the Administration tab, and then clicking 'Setup'.  Click the 'Add More Collectors' link and retrieve the
+Account ID from the Collector download URL.  This should look something like  'http://wwws.appfirst.com/packages/initial/xxxx/'
 
 `default['appfirst']['appfirst_account_id'] = 'xxxx'`
 
@@ -33,7 +33,7 @@ The second noteworthy attribute allows the end user to specify where the
 Collector installation package should be stored locally after it is
 retrieved from appfirst.com -
 
-default['appfirst']['tmp_file_location'] ='/tmp'
+`default['appfirst']['tmp_file_location'] ='/tmp'`
 
 Resources/Providers
 ===================
