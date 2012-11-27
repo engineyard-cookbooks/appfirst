@@ -19,6 +19,7 @@ when 'debian'
   default['appfirst']['pre_packages'] = %w(libssl0.9.8)
 end
 
-default['appfirst']['appfirst_account_id'] = '7084'
-default['appfirst']['tmp_file_location'] = '/tmp'
+# Insert AppFirst account ID here.  Required. 
+default['appfirst']['appfirst_account_id'] = 'xxxx'
 
+default['appfirst']['tmp_file_location'] = '/tmp'
