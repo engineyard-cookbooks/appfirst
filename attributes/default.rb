@@ -22,4 +22,5 @@ end
 # Insert AppFirst account ID here.  Required. 
 default['appfirst']['appfirst_account_id'] = 'xxxx'
 
+# Specify local directory where AppFirst collector should be downloaded to.
 default['appfirst']['tmp_file_location'] = '/tmp'
