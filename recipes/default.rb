@@ -7,6 +7,7 @@
 # All rights reserved - Do Not Redistribute
 #
 
+appfirst_download = "http://#{node['appfirst']['appfirst_frontend_url']}/#{node['appfirst']['appfirst_account_id']}/#{node['appfirst']['package']}"
 appfirst_package = "#{node['appfirst']['tmp_file_location']}/#{node['appfirst']['package']}"
 
 node['appfirst']['pre_packages'].each do |pkg|
@@ -17,7 +18,7 @@ end
 
 http_request "Check Appfirst Modified Time" do
 	message ""
-	url "http://wwws.appfirst.com/packages/initial/#{node['appfirst']['appfirst_account_id']}/#{node['appfirst']['package']}"
+	url appfirst_download
 	action :head
 	if File.exists?(appfirst_package)
 		headers "If-Modified-Since" => File.mtime(appfirst_package).httpdate
@@ -27,7 +28,7 @@ end
 
 remote_file "appfirst" do
 	path appfirst_package
-	source "http://wwws.appfirst.com/packages/initial/#{node['appfirst']['appfirst_account_id']}/#{node['appfirst']['package']}"
+	source appfirst_download
 	# Don't want our run to fail if the endpoint is having temporary issues.
 	ignore_failure true
 	action :nothing
