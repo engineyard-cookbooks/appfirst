@@ -17,22 +17,22 @@ node['appfirst']['pre_packages'].each do |pkg|
 end
 
 http_request "Check Appfirst Modified Time" do
-	message ""
-	url appfirst_download
-	action :head
-	if File.exists?(appfirst_package)
-		headers "If-Modified-Since" => File.mtime(appfirst_package).httpdate
-	end
-	notifies :create, "remote_file[appfirst]", :immediately
+  message ""
+  url appfirst_download
+  action :head
+  if File.exists?(appfirst_package)
+    headers "If-Modified-Since" => File.mtime(appfirst_package).httpdate
+  end
+  notifies :create, "remote_file[appfirst]", :immediately
 end
 
 remote_file "appfirst" do
-	path appfirst_package
-	source appfirst_download
-	# Don't want our run to fail if the endpoint is having temporary issues.
-	ignore_failure true
-	action :nothing
-	notifies :install, "package[appfirst]", :immediately
+  path appfirst_package
+  source appfirst_download
+  # Don't want our run to fail if the endpoint is having temporary issues.
+  ignore_failure true
+  action :nothing
+  notifies :install, "package[appfirst]", :immediately
 end
 
 package "appfirst" do
@@ -41,7 +41,17 @@ package "appfirst" do
   action :nothing
   notifies :restart, "service[afcollector]"
 end
-  
+
+template "/etc/AppFirst.tags" do
+  source "appfirst.tags.erb"
+  mode 0644
+  owner "root"
+  group "root"
+  variables({
+    :tags => node[:appfirst][:tags]
+  })
+end
+
 service "afcollector" do
   supports :restart => true, :start => true
   action :nothing
