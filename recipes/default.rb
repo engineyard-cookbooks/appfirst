@@ -23,6 +23,7 @@ http_request "Check Appfirst Modified Time" do
   if File.exists?(appfirst_package)
     headers "If-Modified-Since" => File.mtime(appfirst_package).httpdate
   end
+  not_if "dpkg -s appfirst" # workaround for images with the package preinstalled
   notifies :create, "remote_file[appfirst]", :immediately
 end
 
