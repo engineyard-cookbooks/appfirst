@@ -43,7 +43,7 @@ package "appfirst" do
   notifies :restart, "service[afcollector]"
 end
 
-template "/etc/AppFirst.tags" do
+template "/etc/appfirst.tags" do
   source "appfirst.tags.erb"
   mode 0644
   owner "root"

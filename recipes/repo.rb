@@ -6,7 +6,7 @@ apt_repository "appfirst" do
   components ["stable","main"]
 end
 
-template "/etc/AppFirst.tags" do
+template "/etc/appfirst.tags" do
   source "appfirst.tags.erb"
   mode 0644
   owner "root"
