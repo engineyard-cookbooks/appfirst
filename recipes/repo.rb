@@ -16,6 +16,10 @@ template "/etc/appfirst.tags" do
   })
 end
 
+link "/opt/appfirst" do
+  to "/opt/AppFirst"
+end
+
 package "appfirst" do
   action :install
   options "--force-yes" # keys, pls
