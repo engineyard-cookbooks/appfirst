@@ -43,7 +43,14 @@ package "appfirst" do
   notifies :restart, "service[afcollector]"
 end
 
-template "/etc/AppFirst.tags" do
+# temporary, appfirst said to to this symlink
+# should be resolved in release v85
+link "/opt/appfirst" do
+  to "/opt/AppFirst"
+  ignore_failure true
+end
+
+template "/etc/appfirst.tags" do
   source "appfirst.tags.erb"
   mode 0644
   owner "root"

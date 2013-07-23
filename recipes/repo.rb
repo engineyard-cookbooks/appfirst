@@ -6,7 +6,7 @@ apt_repository "appfirst" do
   components ["stable","main"]
 end
 
-template "/etc/AppFirst.tags" do
+template "/etc/appfirst.tags" do
   source "appfirst.tags.erb"
   mode 0644
   owner "root"
@@ -14,6 +14,12 @@ template "/etc/AppFirst.tags" do
   variables({
     :tags => node[:appfirst][:tags]
   })
+end
+
+# temp, until v85 resolves this
+link "/opt/appfirst" do
+  to "/opt/AppFirst"
+  ignore_failure true
 end
 
 package "appfirst" do
