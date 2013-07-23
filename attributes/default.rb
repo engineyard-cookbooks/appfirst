@@ -29,3 +29,5 @@ default['appfirst']['tmp_file_location'] = '/tmp'
 
 # Specify tags to identify collected data in AppFirst
 default['appfirst']['tags'] = []
+
+default['appfirst']['apt_repo_url'] = 'http://frontend.appfirst.com/packages/debs'
