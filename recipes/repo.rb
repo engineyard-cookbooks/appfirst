@@ -1,9 +1,9 @@
-
-# temporary; pending package updates from appfirst
 apt_repository "appfirst" do
   uri node['appfirst']['apt_repo_url']
-  distribution ''
-  components ["stable","main"]
+  key node['appfirst']['apt_key']
+  keyserver node['appfirst']['apt_keyserver']
+  distribution node['lsb']['codename']
+  components ["main"]
 end
 
 template "/etc/appfirst.tags" do
